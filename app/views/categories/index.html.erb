@@ -1,0 +1,28 @@
+<h1>Все категории</h1>
+ <%= link_to 'Создать категорию', new_category_path %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.title %></td>
+      <td><%= link_to 'Show', category_path(category) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.title %></td>
+    </tr>
+  <% end %>
+</table>

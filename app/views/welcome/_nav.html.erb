@@ -1,0 +1,9 @@
+<% @categories.each do |category| %>
+	<ul>
+		<li><a href="/">AIR group</a></li>
+		<li><a href="<%= category_path(category) %>"><%= category.title %></a></li>
+		<li><a href="<%= products_product_json_path %>">API product test</a></li>
+		<li><a href="<%= categories_category_json_path %>">API categories test</a></li>
+		<li><a href="<%= new_category_path %>">Создать категорию</a></li>
+	</ul>
+<% end %>
