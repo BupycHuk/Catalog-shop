@@ -6,5 +6,6 @@
 	     <div>
            <img src="<%=@product.picture.url%>" width="100">
        </div>
+       <%= link_to 'Destroy', [@product.category, @product], method: :delete %>
      </div>
 </div>
