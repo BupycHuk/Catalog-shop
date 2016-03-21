@@ -23,6 +23,11 @@
       <%= product.text %>
     </p>
 
+      <p>
+        <strong>Фото:</strong>
+        <img src="<%=product.picture.url%>">
+      </p>
+
     <%= link_to 'подробней', category_product_path(product.category_id, product) %>
     </div>
   <% end %>
@@ -32,7 +37,7 @@
 
 
 <h2>Добавить продукт</h2>
-<%= form_for([@category, @category.products.build]) do |f| %>
+<%= form_for([@category, @category.products.build], method: :post, multipart: true) do |f| %>
   <p>
     <%= f.label :title %><br>
     <%= f.file_field :picture %>
