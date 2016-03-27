@@ -1,13 +1,20 @@
 <%= render "nav.html.erb" %>
 
+<h1>Все товары</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Image</th>
+    <th>Text</th>
+    <th>Price</th>
+  </tr>
 
-<div>
   <% @products.each do |product| %>
-     <div>
-	     <%= link_to Product.find(product).title, category_product_path(product.category_id, product) %>
-	     <img src='<%= product.picture.url %>' width="200" height='200'>
-	     <div><%= product.text %></div>
-	     <div><%= product.price %> сом</div>
-     </div>
+      <tr>
+        <td> <%= link_to Product.find(product).title, category_product_path(product.category_id, product) %></td>
+        <td> <img src='<%= product.picture.url %>' width="200" height='200'></td>
+        <td><%= product.text %></td>
+        <td><%= product.price %> сом</td>
+      </tr>
   <% end %>
-</div>
+</table>
