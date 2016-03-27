@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
+		respond_to do |format|
+			format.json { render json: @categories}
+			format.html
+		end
   end
 
 	def new
@@ -15,9 +19,4 @@ class CategoriesController < ApplicationController
 	def show
 	 	@category = Category.find(params[:id])
 	 end
-
-	def category_json
-		@categories = Category.all
-		render json: @categories
-	end
 end
