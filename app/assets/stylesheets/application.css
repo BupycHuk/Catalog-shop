@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+a, a:link, a:visited {
+    text-decoration: none;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.footer {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+}
