@@ -1,60 +1,17 @@
-<h1 class="category_title">
-  Категория:
-  <%= @category.title %>
-</h1>
-
-<section id="product">
-<h2>Все продукт</h2>
-  <% @category.products.each do |product| %>
-    <div class="product_item">
-    <p>
-      <strong>Название:</strong>
-      <%= product.title %>
-    </p>
+<% provide :page_title, 'Просмотр категории - ' + @category.title %>
+<%= form_for @category, html: {class: 'form-horizontal'} do |f| %>
+    <%= link_to 'Back', categories_url %>
 
 
-    <p>
-      <strong>Цена:</strong>
-      <%= product.price %>
-    </p>
-
-    <p>
-      <strong>Описание:</strong>
-      <%= product.text %>
-    </p>
-
-      <p>
-        <strong>Фото:</strong><br>
-        <img src="<%=product.picture.url%>" width="100">
-      </p>
-
-    <%= link_to 'подробней', category_product_path(product.category_id, product) %>
+    <div class="form-group">
+      <%= f.label :title, 'Категория*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
+      </div>
     </div>
-  <% end %>
-</section>
-
-
-
-
-<h2>Добавить продукт</h2>
-<%= form_for([@category, @category.products.build], method: :post, multipart: true) do |f| %>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.file_field :picture %>
-  </p>
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
-  </p>
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+    <div>
+        <%= link_to 'Редактировать', edit_category_url(@category)%>
+        <%= link_to 'Удалить', category_url(@category),
+                    method: :delete, data: {confirm: 'Вы действительно хотите удалить эту категорию?'} %>
+    </div>
 <% end %>
