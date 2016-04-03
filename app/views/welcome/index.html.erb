@@ -1,20 +1,5 @@
-<%= render "nav.html.erb" %>
-
-<h1>Все товары</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Image</th>
-    <th>Text</th>
-    <th>Price</th>
-  </tr>
-
-  <% @products.each do |product| %>
-      <tr>
-        <td> <%= link_to Product.find(product).title, category_product_path(product.category_id, product) %></td>
-        <td> <img src='<%= product.picture.url %>' width="200" height='200'></td>
-        <td><%= product.text %></td>
-        <td><%= product.price %> сом</td>
-      </tr>
-  <% end %>
-</table>
+<div class="jumbotron">
+  <h1>НОВОЕ МОБИЛЬНОЕ ПРИЛОЖЕНИЕ</h1>
+  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+  <p><a class="btn btn-lg btn-success" href="#" role="button">Начни зарабатывать уже сегодня!</a></p>
+</div>
