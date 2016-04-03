@@ -1,17 +1,9 @@
-<% provide :page_title, 'Просмотр категории - ' + @category.title %>
-<%= form_for @category, html: {class: 'form-horizontal'} do |f| %>
-    <%= link_to 'Back', categories_url %>
+<p>
+  <strong>Category:</strong>
+  <%= @category.title %>
+</p>
 
-
-    <div class="form-group">
-      <%= f.label :title, 'Категория*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
-      </div>
-    </div>
-    <div>
-        <%= link_to 'Редактировать', edit_category_url(@category)%>
-        <%= link_to 'Удалить', category_url(@category),
-                    method: :delete, data: {confirm: 'Вы действительно хотите удалить эту категорию?'} %>
-    </div>
-<% end %>
+<%= link_to 'Edit, ', edit_category_url(@category) %>
+<%= link_to 'Remove', category_url(@category),
+            method: :delete,
+            data: {confirm: 'Вы действительно хотите удалить этот товар?'} %>
