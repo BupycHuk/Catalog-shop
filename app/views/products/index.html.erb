@@ -1,14 +1,39 @@
-<h1>Все товары</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-  </tr>
+<% provide :page_title, 'Товар' %>
+<%= link_to 'Создать товар', new_product_url %>
 
-  <% @products.each do |product| %>
+<div class="form-horizontal">
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <table class="table table-hover col-sm-6">
+      <thead>
       <tr>
-        <td><%= product.title %></td>
-        <td><%= link_to 'Show', product_path(product) %></td>
+
+        <th class="col-sm-4">Category</th>
+        <th class="col-sm-4">Title</th>
+        <th class="col-sm-4">Picture</th>
+        <th class="col-sm-4">Text</th>
+        <th class="col-sm-4">Price</th>
+        <th class="col-sm-4">Actions</th>
       </tr>
-  <% end %>
-</table>
+      </thead>
+      <tbody>
+      <% @products.each do |product| %>
+          <tr>
+
+            <td><%= product.category.title %></td>
+            <td><%= product.title %></td>
+            <td><%= image_tag product.picture.url, width:'100'%></td>
+            <td><%= product.text %></td>
+            <td><%= product.price %></td>
+            <td>
+
+              <%= link_to 'Edit, ', edit_product_url(product) %>
+              <%= link_to 'Remove', product_url(product),
+                          method: :delete,
+                          data: {confirm: 'Вы действительно хотите удалить этот товар?'} %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

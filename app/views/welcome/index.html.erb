@@ -1,4 +1,4 @@
-<%= render "nav.html.erb" %>
+
 
 <h1>Все товары</h1>
 <table>
@@ -11,7 +11,7 @@
 
   <% @products.each do |product| %>
       <tr>
-        <td> <%= link_to Product.find(product).title, category_product_path(product.category_id, product) %></td>
+        <td> <%= link_to Product.find(product).title %></td>
         <td> <img src='<%= product.picture.url %>' width="200" height='200'></td>
         <td><%= product.text %></td>
         <td><%= product.price %> сом</td>
