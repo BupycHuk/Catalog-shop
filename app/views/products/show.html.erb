@@ -1,42 +1,25 @@
-<% provide :page_title, 'Просмотр товара - ' + @product.title %>
-<%= form_for @product, html: {class: 'form-horizontal'} do |f| %>
-    <%= link_to 'Back', products_url %>
+<p>
+  <strong>Category:</strong>
+  <%= @product.category.title %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+<p>
+  <strong>Picture:</strong>
+  <img src='<%= @product.picture.url %>' width="200" height='200'>
+</p>
+<p>
+  <strong>Text:</strong>
+  <%= @product.text %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
 
-    <div class="form-group">
-      <%= f.label :title, 'Товар*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <%= f.text_field :title, autofocus: true, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :picture, 'Фото*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <%= f.file_field :picture, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :text, 'Описание*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <%= f.text_field :text, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :price, 'Цена*', class: 'col-md-3 col-sm-3 col-xs-12 control-label' %>
-      <div class="col-md-6 col-sm-6 col-xs-12">
-        <%= f.text_field :price, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="col-md-offset-3 col-sm-offset-3 col-xs-offset-12 col-md-6 col-sm-6 col-xs-12">
-        <%= link_to 'Редактировать', edit_product_url(@product),
-                    class: 'btn btn-default' %>
-        <%= link_to 'Удалить', product_url(@product),
-                    method: :delete, data: {confirm: 'Вы действительно хотите удалить этот товар?'},
-                    class: 'btn btn-danger' %>
-      </div>
-    </div>
-<% end %>
+<%= link_to 'Edit, ', edit_product_url(@product) %>
+<%= link_to 'Remove', product_url(@product),
+            method: :delete,
+            data: {confirm: 'Вы действительно хотите удалить этот товар?'} %>

@@ -9,7 +9,15 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    begin
+      @product = Product.find(params[:id])
+      respond_to do |format|
+        format.json { render json: @product}
+        format.html
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      not_found
+    end
   end
 
   def new
@@ -18,8 +26,24 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save
-    redirect_to products_path
+    respond_to do |format|
+      if @product.save
+        format.html {
+          redirect_to @product
+        }
+        format.json {
+          render json: @product
+        }
+      else
+        format.html {
+          render 'new'
+        }
+        format.json {
+          render json: @product.errors, status: :unprocessable_entity
+        }
+      end
+    end
+
   end
 
   def edit
