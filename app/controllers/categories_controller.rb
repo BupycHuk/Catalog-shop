@@ -8,7 +8,15 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
+    begin
+      @category = Category.find(params[:id])
+      respond_to do |format|
+        format.json { render json: @category}
+        format.html
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      not_found
+    end
   end
 
   def new
@@ -17,8 +25,23 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save
-    redirect_to categories_path
+    respond_to do |format|
+      if @category.save
+        format.html {
+          redirect_to @category
+        }
+        format.json {
+          render json: @category
+        }
+      else
+        format.html {
+          render 'new'
+        }
+        format.json {
+          render json: @category.errors, status: :unprocessable_entity
+        }
+      end
+    end
   end
 
   def edit
