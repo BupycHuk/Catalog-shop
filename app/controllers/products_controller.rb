@@ -2,8 +2,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    prod ={'products' => @products}
     respond_to do |format|
-      format.json { render json: @products }
+      format.json { render json: prod }
       format.html
     end
   end
@@ -11,8 +12,9 @@ class ProductsController < ApplicationController
   def show
     begin
       @product = Product.find(params[:id])
+      prod ={'product' => @product}
       respond_to do |format|
-        format.json { render json: @product}
+        format.json { render json: prod}
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e

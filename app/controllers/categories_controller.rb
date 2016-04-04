@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
+    cat ={'categories' => @categories}
     respond_to do |format|
-      format.json { render json: @categories }
+      format.json { render json: cat }
       format.html
     end
   end
@@ -10,8 +11,9 @@ class CategoriesController < ApplicationController
   def show
     begin
       @category = Category.find(params[:id])
+      cat ={'category' => @category}
       respond_to do |format|
-        format.json { render json: @category}
+        format.json { render json: cat}
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
