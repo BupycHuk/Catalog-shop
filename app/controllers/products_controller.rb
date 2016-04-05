@@ -1,7 +1,12 @@
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    if params[:category_id]
+      @products = Product.where(:category_id => params[:category_id])
+    else
+      @products = Product.all
+    end
+
     prod ={'products' => @products}
     respond_to do |format|
       format.json { render json: prod }
