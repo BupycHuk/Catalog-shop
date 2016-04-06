@@ -6,10 +6,9 @@ class ProductsController < ApplicationController
     else
       @products = Product.all
     end
-
-    prod ={'products' => @products}
+    product_json = JSON.parse(@products.to_json(:include => { :category => { :only => :title } }))
     respond_to do |format|
-      format.json { render json: prod }
+      format.json { render json: {'products' => product_json} }
       format.html
     end
   end
@@ -17,9 +16,9 @@ class ProductsController < ApplicationController
   def show
     begin
       @product = Product.find(params[:id])
-      prod ={'product' => @product}
+      product_json = JSON.parse(@product.to_json(:include => { :category => { :only => :title } }))
       respond_to do |format|
-        format.json { render json: prod}
+        format.json { render json: {'product' => product_json}}
         format.html
       end
     rescue ActiveRecord::RecordNotFound => e
