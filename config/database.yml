@@ -5,8 +5,8 @@
 #   gem 'sqlite3'
 #
 development:
-  adapter: postgresql
-  database: catalog_shop_development
+  adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 test:
